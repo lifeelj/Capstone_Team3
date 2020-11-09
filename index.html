@@ -6,6 +6,7 @@
   <title>Vanilla Coding | Bootcamp Prep</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
 
@@ -18,34 +19,42 @@
     </div>
     <div id="ending-bg" class="ending-bg"></div>
     <ul class="whack-a-mole clearfix">
-      <li class="mole">
-        <img id="1" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="2" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="3" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="4" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="5" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="6" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="7" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="8" src="mole.png">
-      </li>
-      <li class="mole">
-        <img id="9" src="mole.png">
-      </li>
+      <script type="text/javascript">
+      var li = "<li></li>"
+      for(i=0; i<100; i++){
+        $(".whack-a-mole").append(li)
+        console.log(12);
+      }
+      </script>
+      <script type="text/javascript">
+      $(".whack-a-mole li").each(function(index, item){
+        var i = index.toString();
+        $(item).addClass("mole");
+      })
+      </script>
+      <script type="text/javascript">
+      $(".whack-a-mole li").each(function(index, item){
+        var img = "<img></img>"
+        $(item).append(img);
+      })
+      </script>
+      <script type="text/javascript">
+      $(".whack-a-mole li img").each(function(index, item){
+        $(item).attr("id", index + 1);
+      })
+      </script>
+      <script type="text/javascript">
+      $(".whack-a-mole li img").each(function(index, item){
+        $(item).attr("src", "mole.png");
+      })
+      </script>
+
     </ul>
+    <script type="text/javascript">
+    $('.whack-a-mole li').each(function (index, item) {
+         console.log(item);
+    });
+    </script>
     <div class="point-box clearfix">
       <div class="point-wrap">
         <p id="point-text">Point :</p>

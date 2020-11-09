@@ -3,7 +3,7 @@ var randomNum;
 var preNum;
 
 function randomHole(){
-  randomNum = Math.floor(Math.random() * 10);
+  randomNum = Math.floor(Math.random() * 100);
   if (preNum !== randomNum && randomNum > 0) {
     preNum = randomNum;
     return randomNum;
@@ -21,7 +21,10 @@ var moleCatch = 0;
 
 function showingMole(){
   if(turn < 10){
-    moleNumber = document.getElementById(`${randomHole()}`);
+    /* getElementById parameter == 구멍 번호 */
+    var hole = randomHole();
+    moleNumber = document.getElementById(hole);
+    console.log(moleNumber);
     moleActive(moleNumber);
     moleNumber.addEventListener('click', catchMole);
     moleCatch = setTimeout(seeMOle, 3000);
@@ -41,7 +44,6 @@ startBtn.addEventListener('click', startMole);
 function startMole(){
   startBtn.removeEventListener('click', startMole);
   startBtn.style.color = '#3d3f43';
-  console.log('qwerqewr');
   getPoint = 0;
   turn = 0;
   setTimeout(showingMole, 1000);

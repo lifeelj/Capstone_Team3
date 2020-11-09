@@ -24,13 +24,13 @@ h1 {
   background-color:#028f3f;
   margin: 0 auto;
   list-style: none;
-  width: 600px;
+  width: 1000px;
   border-radius: 20px;
 }
 .mole{
   float: left;
-  width: 160px;
-  height: 160px;
+  width: 70px;
+  height: 70px;
   margin: 10px;
   overflow: hidden;
   cursor: pointer;

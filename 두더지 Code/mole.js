@@ -1,22 +1,15 @@
 var moleNumber;
-var randomNum;
-var preNum;
 
 var spareRandom = null;
-
-function lognormalRandom(mu, sigma)
-{
+function lognormalRandom(mu, sigma) {
   var val, u, v, s, mul;
 
-  if(spareRandom !== null)
-  {
+  if(spareRandom !== null) {
     val = spareRandom;
     spareRandom = null;
   }
-  else
-  {
-    do
-    {
+  else {
+    do {
       u = Math.random()*2-1;
       v = Math.random()*2-1;
 
@@ -39,12 +32,18 @@ function moleHide(num){
     num.classList.remove('active');
 }
 var moleCatch = 0;
+let timeUp = false;
 var lastPosition_x;
 var lastPosition_y;
 var x;
 var y;
+var time;
 
-// 첫 두더지 좌표 생성 함수
+function randTime(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+// 첫 두더지 좌표 생성 함수 (나타나지 않는 임시 좌표)
 function firstGeneratePosition(){
   x = Math.random() * 920; // 0 ~ 920 난수 생성
   y = Math.random() * 920;
@@ -59,7 +58,7 @@ function generatePosition(){
   var theta = Math.random() * 2 * Math.PI;
   x = lastPosition_x + r*Math.cos(theta);
   y = lastPosition_y + r*Math.sin(theta);
-} while (x<0 || x>920 || y<0 || y>920); // 지정 범위 밖의 범위에서 좌표가 생성될 경우 좌표를 재생성
+} while (x<0 || x>1320 || y<0 || y>620); // 지정 범위 밖의 범위에서 좌표가 생성될 경우 좌표를 재생성
 
   lastPosition_x = x;
   lastPosition_y = y;
@@ -67,33 +66,22 @@ function generatePosition(){
 
 function showingMole(){
   if(turn === 0) {
-    moleNumber = document.getElementById('1');
     firstGeneratePosition();
-    console.log(turn, x, y);
-    const mole = document.getElementById('molespace');
-    mole.style.marginLeft = x+"px";
-    mole.style.marginTop = y+"px";
-    moleActive(moleNumber);
-    moleNumber.addEventListener('click', catchMole);
-    moleCatch = setTimeout(seeMOle, 1000);
     turn++;
+    showingMole();
   }
-  else if(turn < 10){
+  else {
+    time = randTime(500, 1500);
     moleNumber = document.getElementById('1');
     generatePosition();
     const mole = document.getElementById('molespace');
     mole.style.marginLeft = x+"px";
     mole.style.marginTop = y+"px";
-    console.log(turn, x, y);
+    console.log(turn, x, y, time);
     moleActive(moleNumber);
     moleNumber.addEventListener('click', catchMole);
-    moleCatch = setTimeout(seeMOle, 1000);
+    moleCatch = setTimeout(seeMOle, time);
     turn++;
-  }else{
-    modalEvent();
-    startBtn.addEventListener('click', startMole);
-    startBtn.textContent = 'PRESS AGAIN';
-    startBtn.style.color = '#f2ecff';
   }
 }
 
@@ -104,22 +92,35 @@ startBtn.addEventListener('click', startMole);
 function startMole(){
   startBtn.removeEventListener('click', startMole);
   startBtn.style.color = '#3d3f43';
-  getPoint = 0;
   turn = 0;
-  setTimeout(showingMole, 1000);
+  getPoint = 0;
+  timeUp = false;
+  showingMole();
+  setTimeout(() => {
+    timeUp = true;
+    modalEvent();
+    startBtn.addEventListener('click', startMole);
+    startBtn.textContent = 'PRESS AGAIN';
+    startBtn.style.color = '#f2ecff';
+  }, 10000); // 플레이 시간 설정
 }
 
 var cntBox = document.querySelector('#count-mole');
+
+// 두더지를 집어넣고 클릭이벤트를 제거
 function seeMOle(){
   moleNumber.removeEventListener('click', catchMole);
   moleHide(moleNumber);
   clearTimeout(moleCatch);
-  setTimeout(showingMole, 1000);
+
+  if(!timeUp) {
+    showingMole();
+  }
 }
 
+// 두더지 잡기에 성공 시 실행됨
 function catchMole(){
   seeMOle();
-  clearTimeout(moleCatch);
   getPoint++;
   cntBox.innerHTML = getPoint;
 }
@@ -130,12 +131,9 @@ var finalEnding = "finalEnding";
 endingBtn.addEventListener('click', hideModal);
 
 function modalEvent(){
-  let point = (getPoint / 10) * 100;
-  if (point <= 70){
-    ending.children[0].innerHTML = "<span>GAME OVER </span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
-  }else{
-    ending.children[0].innerHTML = "<span>YOU WIN</span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
-  }
+  let point = getPoint;
+  ending.children[0].innerHTML = "<span>GAME OVER </span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
+
   ending.classList.add(finalEnding);
   endingBtn.classList.add(finalEnding);
 }

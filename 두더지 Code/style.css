@@ -29,20 +29,22 @@ h1 {
 .whack-a-mole {
   margin: 0 auto;
   list-style: none;
-  width: 1000px;
-  height: 1000px;
+  width: 1400px;
+  height: 700px;
   border-radius: 20px;
 }
+
 .mole{
   float: left;
-  width: 70px;
-  height: 70px;
+  width: 100px;  /* 두더지의 크기를 조절 */
+  height: 100px; /* 두더지의 크기를 조절 */
   margin: 10px;
   overflow: hidden;
   cursor: pointer;
   border-radius: 20px;
   /* background: no-repeat center/cover url('../images/hole.jpg'); */
 }
+
 .mole >img{
   position: relative;
   bottom: -5px;
@@ -56,8 +58,8 @@ h1 {
   opacity: 1;
   animation: shake 0.5s;
   animation-iteration-count: infinite;
-
 }
+
 @keyframes shake {
   0% { transform: translate(1px, 1px) rotate(0deg); }
   10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -117,13 +119,15 @@ h1 {
   color: #f9f871;
   margin: 10px 10px 0 60px;
 }
-#count-mole2 {
+
+#remain-time {
   float: left;
   font-size: 24px;
   font-weight: bold;
   color: #f2ecff;
-  margin: 15px 0 0 0;
+  margin: 10px 0 0 20%;
 }
+
 .ending {
   display:none;
   position: absolute;

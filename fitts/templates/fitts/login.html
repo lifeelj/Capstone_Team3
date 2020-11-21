@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+
+<body>
+    <form action="{% url 'fitts:login' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="email" placeholder="이메일을 입력하세요">
+        <input type="text" name="age" placeholder="나이를 입력하세요">
+        <input type="submit" value="제출하고 실험 참여하기">
+    </form>
+    <img src="{% static 'fitts\guide.jpg' %}" style="width: 1000px; height: 600px; border: 1px;">
+    </img>
+    <!-- 
+    <div class="container" id="container">
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Sign in</h1>
+                <input type="email" placeholder="Email" />
+                <input type="age" placeholder="Age" />
+                <button>Sign In</button>
+            </form>
+        </div>
+    </div> -->
+</body>
+
+</html>

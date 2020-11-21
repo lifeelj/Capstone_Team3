@@ -2,6 +2,7 @@
 
 <head>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -78,7 +79,7 @@
             .append("input")
             .attr("type", "button")
             .attr("name", "DistanceVsTime")
-            .attr("value", "DistanceVsTime")
+            .attr("value", "결과제출하기")
             .on("click", function (d) {
                 for (var i = 1; i < 9; i++) {
                     var xSquare = (xcoordinateArray[i + 1] - xcoordinateArray[i]) * (xcoordinateArray[i + 1] - xcoordinateArray[i]);

@@ -5,6 +5,6 @@ from django.contrib import admin
 from fitts.models import Tasks
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['name', 'age', 'email', 'transform', 'distance', 'time' ]
+    list_display = ['age', 'email', 'transform', 'distance', 'time' ]
 
 admin.site.register(Tasks, PostAdmin)

@@ -4,16 +4,27 @@ from django.urls import reverse
 
 # Create your views here.
 
+def login(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        age = request.POST.get('age')
+        request.session['email']=email
+        request.session['age']=age
+        return redirect('fitts:fitts')
+    elif request.method == "GET":
+        return render(request, 'fitts/login.html')
+
 def fitts(request):
     if request.method == "POST":
         for i in range(1, 9):
+            age = request.session.get('age')
+            email = request.session.get('email')
             transform = request.POST.get('transform', None)
             distance = request.POST.get('distance' + str(i), None)
             time = request.POST.get('time' + str(i), None)
             Tasks.objects.create(
-                name = "김상현",
-                age = 26,
-                email = "abc@g.skku.edu",
+                age = age,
+                email = email,
                 transform = transform,
                 distance = distance,
                 time = time

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Vanilla Coding | Bootcamp Prep</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+      <h1 class="title">Welcome!<br>whack-a-mole</h1>
+  </header>
+  <div class="main">
+    <div id="ending" class="ending">
+      <p id="ending-box"></p>
+    </div>
+    <div id="ending-bg" class="ending-bg"></div>
+
+    <div class="whack-a-mole clearfix">
+      <div id="molespace" class="mole">
+             <img id="1" src="mole.png">
+     </div>
+   </div>
+
+    <div class="point-box clearfix">
+      <div class="point-wrap">
+        <p id="point-text">Point :</p>
+        <p id="count-mole">0</p>
+        <p id="remain-time">Time : <span id="timer"></span></p>
+      </div>
+      <div class="btn-wrap">
+        <button type="button" class="start-btn">PRESS START</button>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="mole.js"></script>
+</body>
+</html>

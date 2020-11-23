@@ -1,0 +1,172 @@
+<html>
+
+<head>
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <style>
+
+    </style>
+    <form id="frm" action="{% url 'fitts:fitts1' %}" method="POST" style="display: none;">
+        {% csrf_token %}
+        <input type="text" id="tfrm" name="transform">
+        <input type="number" step="any" id="dt1" name="distance1">
+        <input type="number" id="tm1" name="time1">
+        <input type="number" step="any" id="dt2" name="distance2">
+        <input type="number" id="tm2" name="time2">
+        <input type="number" step="any" id="dt3" name="distance3">
+        <input type="number" id="tm3" name="time3">
+        <input type="number" step="any" id="dt4" name="distance4">
+        <input type="number" id="tm4" name="time4">
+        <input type="number" step="any" id="dt5" name="distance5">
+        <input type="number" id="tm5" name="time5">
+        <input type="number" step="any" id="dt6" name="distance6">
+        <input type="number" id="tm6" name="time6">
+        <input type="number" step="any" id="dt7" name="distance7">
+        <input type="number" id="tm7" name="time7">
+        <input type="number" step="any" id="dt8" name="distance8">
+        <input type="number" id="tm8" name="time8">
+        <input type="submit" id="sm">
+    </form>
+    <script>
+
+        var transform = 1;
+        var xcoordinateArray = [];
+        var ycoordinateArray = [];
+        var timeArry = [];
+        var totalTime = [];
+        var distance = [];
+        var totalDistance = 0;
+        var index = 0;
+        var fillingColor;
+        var dist = 100;
+        var width = 25;
+        var dist2 = 150;
+        var dist3 = 200;
+        var width2 = 30;
+        var dataVals = [[0.698132, "1"], [1.39626, "8"], [2.0944, "6"], [2.79253, "4"], [3.49066, "2"], [4.18879, "9"], [4.88692, "7"], [5.58505, "5"], [6.28319, "3"]];
+
+        var page = d3.select("body").append("svg");
+        page.attr("width", 600).attr("height", 600)
+            .style("border", "4px solid black");
+
+        var circles = page.selectAll("circle")
+            .data(dataVals)
+            .enter()
+            .append("circle");
+
+        var circleGroup = circles.attr("cx", function (d, i) { return 300 + dist * Math.cos(d[0]); })
+            .attr("cy", function (d, i) { return 300 + dist * Math.sin(d[0]); })
+            .attr("r", width)
+            .attr("id", function (d, i) { return d[1]; })
+            //.on("mouseover",handleMouseOver)
+            //.on("mouseout", handleMouseOut)
+            .attr("stroke", "black")
+            .style("fill", function (d, i) {
+                if (d[1] == "1")
+                    fillingColor = "black";
+                else
+                    fillingColor = "red";
+                return fillingColor
+            });
+
+        circleGroup.on("click", clickCircle);
+
+        var button = d3.select("body")
+            .append("input")
+            .attr("type", "button")
+            .attr("name", "DistanceVsTime")
+            .attr("value", "결과제출하기")
+            .on("click", function (d) {
+                for (var i = 1; i < 9; i++) {
+                    var xSquare = (xcoordinateArray[i + 1] - xcoordinateArray[i]) * (xcoordinateArray[i + 1] - xcoordinateArray[i]);
+                    var ySquare = (ycoordinateArray[i + 1] - ycoordinateArray[i]) * (ycoordinateArray[i + 1] - ycoordinateArray[i]);
+                    distance[i] = Math.sqrt(xSquare + ySquare);
+                    totalTime[i] = timeArry[i + 1] - timeArry[i];
+                }
+                for (var i = 1; i < 9; i++) {
+                    totalDistance = +distance[i];
+                }
+                //document.getElementById("textBox").innerHTML=totalDistance;
+                for (var i = 1; i < 10; i++) {
+                    var tab = document.getElementById("Distancedata");
+                    var row = tab.insertRow(0);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+
+                    if (i == 9) {
+                        cell1.innerHTML = "DistanceBetweenNodes";
+                        cell2.innerHTML = "Time(in ms)";
+                    }
+                    else {
+                        cell1.innerHTML = distance[i];
+                        cell2.innerHTML = totalTime[i];
+                        id_dt = "dt" + i
+                        id_tm = "tm" + i
+                        console.log(id_dt)
+                        console.log(id_tm)
+                        document.getElementById(id_dt).setAttribute('value', parseFloat(distance[i]));
+                        document.getElementById(id_tm).setAttribute('value', parseFloat(totalTime[i]));
+                        document.getElementById('tfrm').setAttribute('value', transform);
+                        console.log(distance[i])
+                        console.log(totalTime[i])
+                        console.log(transform)
+                    }
+                }
+                document.getElementById('sm').click();
+            });
+
+        function handleMouseOver(d, i) {
+            d3.select(this)
+                .attr("stroke-width", 2)
+                .attr("stroke", "black")
+                .style("fill", "black");
+            page.append("text").attr({})
+        }
+
+        function handleMouseOut(d, i) {
+            d3.select(this).style("fill", "red");
+        }
+
+        function clickCircle() {
+            //var index=0;
+            if (index < 10) {
+                var coordinates = [0, 0];
+                d3.select(this).style("fill", "black");
+                coordinates = d3.mouse(this);
+                //time=Date.now();
+                timeArry[index] = Date.now();
+                var x = coordinates[0];
+                var y = coordinates[1];
+                xcoordinateArray[index] = x;
+                ycoordinateArray[index] = y;
+                //coordinateArray.push(coordinates);
+                //console.log(coordinateArray);
+                //document.write(coordinateArray);
+            }
+            index++;
+            allcircles = page.selectAll("circle");
+            allcircles.each(function (d, i) {
+                var tempId = this.getAttribute("id");
+                var indexId = index.toString();
+                if (tempId == indexId)
+                    this.style.fill = "black";
+                else
+                    this.style.fill = "red";
+            }
+            )
+            //<input type="number" id="Amplitude" value=50 /><br>
+        }
+    </script>
+
+    <table id="Distancedata"></table>
+
+
+</body>
+
+</html>

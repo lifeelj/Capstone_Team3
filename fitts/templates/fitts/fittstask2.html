@@ -1,8 +1,10 @@
 <html>
 
 <head>
+
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <meta charset="utf-8">
 </head>
 
 <body>
@@ -10,7 +12,7 @@
     <style>
 
     </style>
-    <form id="frm" action="{% url 'fitts:fitts' %}" method="POST" style="display: none;">
+    <form id="frm" action="{% url 'fitts:fitts2' %}" method="POST" style="display: none;">
         {% csrf_token %}
         <input type="text" id="tfrm" name="transform">
         <input type="number" step="any" id="dt1" name="distance1">
@@ -33,7 +35,7 @@
     </form>
     <script>
 
-        var transform = 1;
+        var transform = 2;
         var xcoordinateArray = [];
         var ycoordinateArray = [];
         var timeArry = [];
@@ -42,8 +44,8 @@
         var totalDistance = 0;
         var index = 0;
         var fillingColor;
-        var dist = 100;
-        var width = 20;
+        var dist = 150;
+        var width = 25;
         var dist2 = 150;
         var dist3 = 200;
         var width2 = 30;
@@ -117,130 +119,6 @@
                     }
                 }
                 document.getElementById('sm').click();
-            });
-
-
-        var button2 = d3.select("body")
-            .append("input")
-            .attr("type", "button")
-            .attr("name", "Transform2")
-            .attr("value", "Transform2")
-            .on("click", function (d) {
-                index = 0;
-                transform = 2;
-                page.selectAll("circle").remove();
-
-                //var radius=document.getElementById("radius").value;
-                //var amplitude=document.getElementById("Amplitude").value;
-                page.selectAll("circle")
-                    .data(dataVals)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function (d, i) { return 300 + dist2 * Math.cos(d[0]); })
-                    .attr("cy", function (d, i) { return 300 + dist2 * Math.sin(d[0]); })
-                    .attr("r", width)
-                    .attr("id", function (d, i) { test = d[1]; return d[1]; })
-                    .style("fill", function (d, i) { var fillingcolor; if (d[1] == "1") fillingcolor = "black"; else fillingcolor = "red"; return fillingcolor })
-                    .on("click", clickCircle);
-
-            });
-        var button3 = d3.select("body")
-            .append("input")
-            .attr("type", "button")
-            .attr("name", "Transform3")
-            .attr("value", "Transform3")
-            .on("click", function (d) {
-                index = 0;
-                transform = 3;
-                page.selectAll("circle").remove();
-
-                //var radius=document.getElementById("radius").value;
-                //var amplitude=document.getElementById("Amplitude").value;
-                page.selectAll("circle")
-                    .data(dataVals)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function (d, i) { return 300 + dist3 * Math.cos(d[0]); })
-                    .attr("cy", function (d, i) { return 300 + dist3 * Math.sin(d[0]); })
-                    .attr("r", width)
-                    .attr("id", function (d, i) { test = d[1]; return d[1]; })
-                    .style("fill", function (d, i) { var fillingcolor; if (d[1] == "1") fillingcolor = "black"; else fillingcolor = "red"; return fillingcolor })
-                    .on("click", clickCircle);
-
-            });
-
-        var button4 = d3.select("body")
-            .append("input")
-            .attr("type", "button")
-            .attr("name", "Transform4")
-            .attr("value", "Transform4")
-            .on("click", function (d) {
-                index = 0;
-                transform = 4;
-                page.selectAll("circle").remove();
-
-                //var radius=document.getElementById("radius").value;
-                //var amplitude=document.getElementById("Amplitude").value;
-                page.selectAll("circle")
-                    .data(dataVals)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function (d, i) { return 300 + dist * Math.cos(d[0]); })
-                    .attr("cy", function (d, i) { return 300 + dist * Math.sin(d[0]); })
-                    .attr("r", width2)
-                    .attr("id", function (d, i) { test = d[1]; return d[1]; })
-                    .style("fill", function (d, i) { var fillingcolor; if (d[1] == "1") fillingcolor = "black"; else fillingcolor = "red"; return fillingcolor })
-                    .on("click", clickCircle);
-
-            });
-
-        var button5 = d3.select("body")
-            .append("input")
-            .attr("type", "button")
-            .attr("name", "Transform5")
-            .attr("value", "Transform5")
-            .on("click", function (d) {
-                index = 0;
-                transform = 5;
-                page.selectAll("circle").remove();
-
-                //var radius=document.getElementById("radius").value;
-                //var amplitude=document.getElementById("Amplitude").value;
-                page.selectAll("circle")
-                    .data(dataVals)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function (d, i) { return 300 + dist2 * Math.cos(d[0]); })
-                    .attr("cy", function (d, i) { return 300 + dist2 * Math.sin(d[0]); })
-                    .attr("r", width2)
-                    .attr("id", function (d, i) { test = d[1]; return d[1]; })
-                    .style("fill", function (d, i) { var fillingcolor; if (d[1] == "1") fillingcolor = "black"; else fillingcolor = "red"; return fillingcolor })
-                    .on("click", clickCircle);
-
-            });
-        var button5 = d3.select("body")
-            .append("input")
-            .attr("type", "button")
-            .attr("name", "Transform6")
-            .attr("value", "Transform6")
-            .on("click", function (d) {
-                index = 0;
-                transform = 6;
-                page.selectAll("circle").remove();
-
-                //var radius=document.getElementById("radius").value;
-                //var amplitude=document.getElementById("Amplitude").value;
-                page.selectAll("circle")
-                    .data(dataVals)
-                    .enter()
-                    .append("circle")
-                    .attr("cx", function (d, i) { return 300 + dist3 * Math.cos(d[0]); })
-                    .attr("cy", function (d, i) { return 300 + dist3 * Math.sin(d[0]); })
-                    .attr("r", width2)
-                    .attr("id", function (d, i) { test = d[1]; return d[1]; })
-                    .style("fill", function (d, i) { var fillingcolor; if (d[1] == "1") fillingcolor = "black"; else fillingcolor = "red"; return fillingcolor })
-                    .on("click", clickCircle);
-
             });
 
         function handleMouseOver(d, i) {

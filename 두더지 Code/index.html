@@ -8,30 +8,31 @@
   <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <header>
-      <h1 class="title">Welcome!<br>whack-a-mole</h1>
+      <h1 class="title">두더지 게임에 오신걸<br>환영합니다!</h1>
   </header>
   <div class="main">
     <div id="ending" class="ending">
       <p id="ending-box"></p>
+      <button type="button" id="quit-ending"></p>
     </div>
     <div id="ending-bg" class="ending-bg"></div>
 
-    <div class="whack-a-mole clearfix">
+    <div class="whack-a-mole">
       <div id="molespace" class="mole">
-             <img id="1" src="mole.png">
-     </div>
-   </div>
+        <img id="1" src="mole.png">
+      </div>
+    </div>
 
-    <div class="point-box clearfix">
+    <div class="point-box">
       <div class="point-wrap">
-        <p id="point-text">Point :</p>
+        <p id="point-text">점수 :</p>
         <p id="count-mole">0</p>
-        <p id="remain-time">Time : <span id="timer"></span></p>
+        <p id="remain-time">남은 시간 : </p>
+        <p id="timer">10</p>
       </div>
       <div class="btn-wrap">
-        <button type="button" class="start-btn">PRESS START</button>
+        <button type="button" class="start-btn">시작 버튼</button>
       </div>
     </div>
   </div>

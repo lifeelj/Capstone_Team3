@@ -37,7 +37,9 @@ var lastPosition_x;
 var lastPosition_y;
 var x;
 var y;
+var r;
 var time;
+
 
 function randTime(min, max) {
   return Math.round(Math.random() * (max - min) + min);
@@ -45,8 +47,8 @@ function randTime(min, max) {
 
 // 첫 두더지 좌표 생성 함수 (나타나지 않는 임시 좌표)
 function firstGeneratePosition(){
-  x = Math.random() * 920; // 0 ~ 920 난수 생성
-  y = Math.random() * 920;
+  x = Math.random() * 1400; // 0 ~ 920 난수 생성
+  y = Math.random() * 700;
   lastPosition_x = x;
   lastPosition_y = y;
 }
@@ -54,7 +56,7 @@ function firstGeneratePosition(){
 // 새로운 두더지 좌표 생성 함수
 function generatePosition(){
   do {
-  var r = lognormalRandom(7, 1); // parameter: mu(평균), sigma(표준편차)
+  r = lognormalRandom(7, 0.3); // parameter: mu(평균), sigma(표준편차)
   var theta = Math.random() * 2 * Math.PI;
   x = lastPosition_x + r*Math.cos(theta);
   y = lastPosition_y + r*Math.sin(theta);
@@ -77,7 +79,7 @@ function showingMole(){
     const mole = document.getElementById('molespace');
     mole.style.marginLeft = x+"px";
     mole.style.marginTop = y+"px";
-    console.log(turn, x, y, time);
+    console.log(turn, r, time);
     moleActive(moleNumber);
     moleNumber.addEventListener('click', catchMole);
     moleCatch = setTimeout(seeMOle, time);
@@ -85,9 +87,14 @@ function showingMole(){
   }
 }
 
+var BGM = new Audio('./Game_BGM.mp3');
+var hitAudio = new Audio('./Jab.mp3');
 var startBtn = document.querySelector('.start-btn');
+var header = document.querySelector("h1");
 
 startBtn.addEventListener('click', startMole);
+
+var leftTime = document.getElementById("timer");
 
 function startMole(){
   startBtn.removeEventListener('click', startMole);
@@ -95,14 +102,24 @@ function startMole(){
   turn = 0;
   getPoint = 0;
   timeUp = false;
+  BGM.play();
   showingMole();
   setTimeout(() => {
     timeUp = true;
     modalEvent();
     startBtn.addEventListener('click', startMole);
-    startBtn.textContent = 'PRESS AGAIN';
+    startBtn.textContent = '다시 시작';
     startBtn.style.color = '#f2ecff';
+    BGM.pause();
+    BGM.currentTime = 0;
   }, 10000); // 플레이 시간 설정
+
+  let i = 10; // 타이머 설정
+  const work = () => {
+  leftTime.innerHTML = i;
+  if (i--) setTimeout(work, 1000);
+}
+work();
 }
 
 var cntBox = document.querySelector('#count-mole');
@@ -122,22 +139,24 @@ function seeMOle(){
 function catchMole(){
   seeMOle();
   getPoint++;
+  hitAudio.play();
   cntBox.innerHTML = getPoint;
 }
 
-var endingBtn = document.querySelector('#ending-bg');
+var endingBackground = document.querySelector('#ending-bg');
+var endingBtn = document.getElementById('quit-ending');
 var finalEnding = "finalEnding";
 
 endingBtn.addEventListener('click', hideModal);
 
 function modalEvent(){
   let point = getPoint;
-  ending.children[0].innerHTML = "<span>GAME OVER </span></br>YOUR SCORE IS&nbsp;&nbsp;<span class='last'>" + point + '</span>!';
-
+  ending.children[0].innerHTML = "<span>수고하셨습니다</span></br>성공률은 &nbsp;&nbsp;<span class='last'>" + Math.round(point/turn*100) + '</span>% 입니다!';
+  endingBtn.innerHTML = "<span>확인</span>";
   ending.classList.add(finalEnding);
-  endingBtn.classList.add(finalEnding);
+  endingBackground.classList.add(finalEnding);
 }
 function hideModal(){
   ending.classList.remove(finalEnding);
-  endingBtn.classList.remove(finalEnding);
+  endingBackground.classList.remove(finalEnding);
 }

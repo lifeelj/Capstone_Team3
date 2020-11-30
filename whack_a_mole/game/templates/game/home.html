@@ -1,0 +1,21 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>두더지를 잡아라!</title>
+    <link rel="stylesheet" href="{% static 'game/homestyle.css' %}">
+</head>
+
+<body>
+    <form action="{% url 'game:home' %}" method="POST">
+        {% csrf_token %}
+        <select name="age" class="agebutton">
+            <option value="ten">10대~20대</option>
+            <option value="thirty">30대~40대</option>
+            <option value="fifty">50대~60대</option>
+        </select>
+        <input type="submit" class="startbutton" value="게임 시작하기">
+    </form>

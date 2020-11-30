@@ -1,0 +1,44 @@
+@import url(://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+html, body {
+  box-sizing: border-box;
+  background-color: #222222;
+  font-family: 'Press Start 2P', cursive;
+  background-image: url( "backgroundfirst.png" );
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+.agebutton {
+  width: 15%;
+  height: 70px;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 20px 0 30px 0;
+  background: #ffffff;
+  border: none;
+  color: #222;
+  border-radius: 0px;
+  position:   relative;
+  left:820px;
+  top:420px;
+}
+
+.startbutton {
+  width: 30%;
+  height: 70px;
+  font-size: 20px;
+  font-weight: 900;
+  margin: 20px 0 30px 0;
+  background: #222;
+  border: none;
+  color: #f2ecff;
+  border-radius: 20px;
+  position:   relative;
+  left:330px;
+  top:550px;
+}

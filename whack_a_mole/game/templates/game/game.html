@@ -1,0 +1,51 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>두더지를 잡아라!</title>
+  <link rel="stylesheet" href="{% static 'game/style.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <input type="text" id="mu" value={{mu}} style="display: none">
+  <form action="{% url 'game:game' pk %}" method="POST" style="display: none">
+    {% csrf_token %}
+    <input type="text" id="score" name="score" value="0">
+    <input type="submit" id="submit">
+  </form>
+  <header>
+    <h1 class="title">두더지 게임에 오신걸<br>환영합니다!</h1>
+  </header>
+  <div class="main">
+    <div id="ending" class="ending">
+      <p id="ending-box"></p>
+      <button type="button" id="quit-ending"></p>
+    </div>
+    <div id="ending-bg" class="ending-bg"></div>
+
+    <div class="whack-a-mole">
+      <div id="molespace" class="mole">
+        <img id="1" src="{% static 'game/mole.png' %}">
+      </div>
+    </div>
+
+    <div class="point-box">
+      <div class="point-wrap">
+        <p id="point-text">점수 :</p>
+        <p id="count-mole">0</p>
+        <p id="remain-time">남은 시간 : </p>
+        <p id="timer">30</p>
+      </div>
+      <div class="btn-wrap">
+        <button type="button" class="start-btn">시작 버튼</button>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="{% static 'game/mole.js' %}"></script>
+</body>
+
+</html>

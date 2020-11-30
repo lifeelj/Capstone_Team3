@@ -12,6 +12,7 @@
 
 <body>
   <input type="text" id="mu" value={{mu}} style="display: none">
+  <input type="text" id="pk" value={{pk}} style="display: none">
   <form action="{% url 'game:game' pk %}" method="POST" style="display: none">
     {% csrf_token %}
     <input type="text" id="score" name="score" value="0">

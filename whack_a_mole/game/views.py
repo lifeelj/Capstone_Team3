@@ -12,11 +12,11 @@ def home(request):
         age = request.POST.get('age')
         pk = 0
         if age == "ten":
-            pk = 10
+            pk = 0
         elif age == "thirty":
-            pk = 30
+            pk = 1
         elif age == "fifty":
-            pk = 50
+            pk = 2
         request.session['age'] = pk
         return redirect('game:game', pk=pk)
 
@@ -25,7 +25,7 @@ def game(request, pk):
     if request.method == "GET":
         data = {
             'pk': pk,
-            'mu': 7,
+            'mu': 9.2,
         }
         return render(request, 'game/game.html', data)
     elif request.method == "POST":

@@ -83,12 +83,15 @@ function showingMole() {
     showingMole();
   }
   else {
-    time = randTime(t1[0], t2[0]);
+    i = document.getElementById("pk").value;
+    i = parseInt(i);
+    console.log(i);
+    time = randTime(t1[i], t2[i]);
     moleNumber = document.getElementById('1');
     generatePosition();
     const mole = document.getElementById('molespace');
-    mole.style.width = width[0] + "px";
-    mole.style.height = width[0] + "px";
+    mole.style.width = width[i] + "px";
+    mole.style.height = width[i] + "px";
     mole.style.marginLeft = x + "px";
     mole.style.marginTop = y + "px";
     console.log(turn, r, time);
@@ -99,8 +102,8 @@ function showingMole() {
   }
 }
 
-var BGM = new Audio('./Game_BGM.mp3');
-var hitAudio = new Audio('./Jab.mp3');
+var BGM = new Audio('Game_BGM.mp3');
+var hitAudio = new Audio('Jab.mp3');
 var startBtn = document.querySelector('.start-btn');
 var header = document.querySelector("h1");
 

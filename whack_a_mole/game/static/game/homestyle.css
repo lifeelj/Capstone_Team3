@@ -23,7 +23,7 @@ button {
   border: none;
   color: #222;
   border-radius: 0px;
-  position:   relative;
+  position:   fixed;
   left:820px;
   top:420px;
 }
@@ -38,7 +38,7 @@ button {
   border: none;
   color: #f2ecff;
   border-radius: 20px;
-  position:   relative;
-  left:330px;
+  position:   fixed;
+  left:570px;
   top:550px;
 }

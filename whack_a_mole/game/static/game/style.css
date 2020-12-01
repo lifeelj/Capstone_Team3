@@ -29,8 +29,8 @@ h1 {
 .whack-a-mole {
   margin: 0 auto;
   list-style: none;
-  width: 900px; /* 화면 크기 조절 */
-  height: 900px; /* 화면 크기 조절 */
+  width: 1200px; /* 화면 크기 조절 */
+  height: 800px; /* 화면 크기 조절 */
   border-radius: 20px;
   background-image: url( "background.jpg" );
 }
@@ -105,7 +105,7 @@ h1 {
 .point-box {
   background-color: #4e4e4e;
   width: 600px;
-  margin: 30px auto 0 auto;
+  margin: 0px auto 0 auto;
   text-align: center;
   border-radius: 20px;
 }

@@ -150,7 +150,9 @@ h1 {
   font-size: 30px;
   font-weight: bold;
   color: #f9f871;
-  margin: 10px -20px 0px 60px;
+  position: absolute;
+  right: 510px;
+  top: 800px;
 }
 .ending {
   display:none;

@@ -54,8 +54,8 @@ function randTime(min, max) {
 
 // 첫 두더지 좌표 생성 함수 (나타나지 않는 임시 좌표)
 function firstGeneratePosition() {
-  x = Math.random() * 820;
-  y = Math.random() * 820;
+  x = Math.random() * 1170;
+  y = Math.random() * 670;
   lastPosition_x = x;
   lastPosition_y = y;
 }
@@ -70,7 +70,7 @@ function generatePosition() {
     var theta = Math.random() * 2 * Math.PI;
     x = lastPosition_x + r * Math.cos(theta);
     y = lastPosition_y + r * Math.sin(theta);
-  } while (x < 0 || x > 820 || y < 0 || y > 820); // 지정 범위 밖의 범위에서 좌표가 생성될 경우 좌표를 재생성
+  } while (x < 0 || x > 1170 || y < 0 || y > 670); // 지정 범위 밖의 범위에서 좌표가 생성될 경우 좌표를 재생성
 
   lastPosition_x = x;
   lastPosition_y = y;

@@ -166,7 +166,7 @@ endingBtn.addEventListener('click', hideModal);
 
 function modalEvent() {
   let point = getPoint;
-  ending.children[0].innerHTML = "<span>수고하셨습니다</span></br>성공률은 &nbsp;&nbsp;<span class='last'>" + Math.round(point / turn * 100) + '</span>% 입니다!';
+  ending.children[0].innerHTML = "<span>수고하셨습니다</span></br>성공률은 &nbsp;&nbsp;<span class='last'>" + Math.round(point / (turn-1) * 100) + '</span>% 입니다!';
   endingBtn.innerHTML = "<span>확인</span>";
   ending.classList.add(finalEnding);
   endingBackground.classList.add(finalEnding);

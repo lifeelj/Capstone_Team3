@@ -1,9 +1,9 @@
 # Capstone_Team 3 : <br>
 `An Analysis of the Effect of Game Difficulty Control by Age Group Using Fitts' Law` <br>
 [&#9989;GO Source Code](https://github.com/lifeelj/Capstone_Team3/tree/master)<br>
-[&#9989;GO Final Presentation](https://github.com/lifeelj/Capstone_Team3/blob/main/Final%20presentation%20_%20Team%203.pdf)
+[&#9989;GO Final Presentation](https://github.com/lifeelj/Capstone_Team3/blob/main/Final%20presentation%20_%20Team%203.pdf)<br>
 
-**Fitts’ Law는 인간-컴퓨터 상호작용과 인간 공학 분야에서 다양하게 연구되고 사용되었다. 본 논문에서는 이를 게임 분야에 적용하여 연령대별 일정한 성공률을 도출할 수 있는 게임 난이도를 결정하고 이러한 연령대별 난이도 조절의 효과를 분석한다. <br>
+**Fitts’ Law는 인간-컴퓨터 상호작용과 인간 공학 분야에서 다양하게 연구되고 사용되었다. 본 논문에서는 이를 게임 분야에 적용하여 연령대별 일정한 성공률을 도출할 수 있는 게임 난이도를 결정하고 이러한 연령대별 난이도 조절의 효과를 분석한다.<br>
 Fitts’ task와 두더지 게임이라는 두 가지 실험을 설계하여 분석한 결과 연령대가 증가할수록 버튼 클릭에 대한 수행 능력이 뚜렷하게 감소하는 경향성을 발견할 수 있었다. 아울러 이에 대한 실험 결과를 두더지 게임에 적용했을 때, 평균 성공률이 타깃으로 설정한 80%에 근접하게 나오는 것을 확인할 수 있었다. **
 
 ## [Problem Statement]

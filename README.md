@@ -1,5 +1,4 @@
-# Capstone_Team 3 : <br>
-`An Analysis of the Effect of Game Difficulty Control by Age Group Using Fitts' Law` <br>
+# Capstone_Team 3 : `An Analysis of the Effect of Game Difficulty Control by Age Group Using Fitts' Law` <br>
 [&#9989;GO Source Code](https://github.com/lifeelj/Capstone_Team3/tree/master)<br>
 [&#9989;GO Final Presentation](https://github.com/lifeelj/Capstone_Team3/blob/main/Final%20presentation%20_%20Team%203.pdf)<br>
 
